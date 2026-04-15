@@ -1,12 +1,12 @@
-# Acero Finance - Design System & Backend Integration Guide
+# FinFlow Finance - Design System & Backend Integration Guide
 
-This document describes the complete design system, data models, API contracts, and frontend structure for the **Acero Finance** application. It is intended to serve as a definitive reference for a backend developer or another agent to build or replace the backend.
+This document describes the complete design system, data models, API contracts, and frontend structure for the **FinFlow Finance** application. It is intended to serve as a definitive reference for a backend developer or another agent to build or replace the backend.
 
 ---
 
 ## 1. Application Overview
 
-**Acero Finance** is an invoice and receipt management system for **Acero Structural Steel Manufacturing Co. LLC**, a UAE-based structural steel fabrication company. The application manages:
+**FinFlow Finance** is an invoice and receipt management system for **FinFlow Structural Steel Manufacturing Co. LLC**, a UAE-based structural steel fabrication company. The application manages:
 
 1. **Invoice Voucher Entry** - Create, read, update, delete invoices (Proforma and Tax)
 2. **Receipt Voucher Entry** - Record payments received against invoices (Auto/Manual modes)
@@ -114,7 +114,7 @@ The design uses a **deep crimson red** primary accent on a clean **white/light g
 <div class="flex h-screen overflow-hidden bg-background">
   <!-- Sidebar (dark, collapsible) -->
   <aside class="w-64 | w-16 (collapsed)">
-    Logo (/ACERO)
+    Logo (/FinFlow)
     Navigation Items
     Collapse Toggle
   </aside>
@@ -148,7 +148,7 @@ Inactive state: `text-sidebar-foreground/70 hover:bg-sidebar-accent`
 
 ### 4.3 Top Header Bar
 
-- Left: App name "Acero Finance" + subtitle "ERP System"
+- Left: App name "FinFlow Finance" + subtitle "ERP System"
 - Right: Search input (hidden on mobile), Moon icon (theme toggle placeholder), Bell icon with red notification dot, User avatar circle (crimson bg with initials "SA")
 
 ---
