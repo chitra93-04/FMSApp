@@ -1,7 +1,8 @@
 "use client"
 
 import { AppSidebar } from "@/components/app-sidebar"
-import { Bell, Search, Moon } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
+import { Bell, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
@@ -24,10 +25,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 className="h-8 w-40 lg:w-48 pl-8 text-xs bg-secondary border-0"
               />
             </div>
-            <Button variant="ghost" size="icon" className="size-8 text-muted-foreground hover:text-foreground flex-shrink-0">
-              <Moon className="size-4" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
+            <ThemeToggle />
             <Button variant="ghost" size="icon" className="size-8 text-muted-foreground hover:text-foreground relative flex-shrink-0">
               <Bell className="size-4" />
               <span className="absolute top-1 right-1 size-2 rounded-full bg-primary" />
