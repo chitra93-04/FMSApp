@@ -218,66 +218,66 @@ export function InvoiceVoucherEntry() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4 sm:gap-6">
       {/* Header */}
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 sm:gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
             Invoice Voucher Entry
           </h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             Create and manage proforma and tax invoices
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button onClick={handleNew} variant="outline" className="gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <Button onClick={handleNew} variant="outline" className="gap-2 text-xs sm:text-sm">
             <Plus className="size-4" />
-            New
+            <span className="hidden sm:inline">New</span>
           </Button>
           <Button
             onClick={handleSave}
             disabled={saving || !!selectedId}
-            className="gap-2"
+            className="gap-2 text-xs sm:text-sm"
           >
             <Save className="size-4" />
-            Save
+            <span className="hidden sm:inline">Save</span>
           </Button>
           <Button
             onClick={handleUpdate}
             disabled={saving || !selectedId}
             variant="secondary"
-            className="gap-2"
+            className="gap-2 text-xs sm:text-sm"
           >
             <RefreshCw className="size-4" />
-            Update
+            <span className="hidden sm:inline">Update</span>
           </Button>
           <Button
             onClick={() => setDeleteDialogOpen(true)}
             disabled={!selectedId}
             variant="destructive"
-            className="gap-2"
+            className="gap-2 text-xs sm:text-sm"
           >
             <Trash2 className="size-4" />
-            Delete
+            <span className="hidden sm:inline">Delete</span>
           </Button>
-          <Button onClick={() => handlePrint()} variant="outline" className="gap-2">
+          <Button onClick={() => handlePrint()} variant="outline" className="gap-2 text-xs sm:text-sm">
             <Printer className="size-4" />
-            Print
+            <span className="hidden sm:inline">Print</span>
           </Button>
         </div>
       </div>
 
       {/* Form */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-        <div className="xl:col-span-2 flex flex-col gap-6">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2 flex flex-col gap-4 sm:gap-6">
           {/* Invoice Information */}
           <Card>
-            <CardHeader className="pb-4">
-              <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+            <CardHeader className="pb-3 sm:pb-4">
+              <CardTitle className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider">
                 Invoice Information
               </CardTitle>
             </CardHeader>
-            <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <CardContent className="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <div className="flex flex-col gap-1.5">
                 <Label htmlFor="invoiceType">Invoice Type</Label>
                 <Select
@@ -544,15 +544,15 @@ export function InvoiceVoucherEntry() {
         </div>
 
         {/* Right Column */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4 sm:gap-6">
           {/* Bank Details Card */}
           <Card>
-            <CardHeader className="pb-4">
-              <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+            <CardHeader className="pb-3 sm:pb-4">
+              <CardTitle className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider">
                 Bank Details
               </CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-col gap-4">
+            <CardContent className="flex flex-col gap-3 sm:gap-4">
               <div className="flex flex-col gap-1.5">
                 <Label htmlFor="bankAccount">Bank Account</Label>
                 <Select
@@ -716,19 +716,19 @@ export function InvoiceVoucherEntry() {
 
       {/* Invoice List */}
       <Card>
-        <CardHeader className="pb-4">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <CardTitle className="flex items-center gap-2 text-base">
+        <CardHeader className="pb-3 sm:pb-4">
+          <div className="flex flex-col gap-3 sm:gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
               <FileText className="size-4" />
               Invoice Records
             </CardTitle>
-            <div className="relative w-full max-w-sm">
+            <div className="relative w-full sm:max-w-sm">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
               <Input
-                placeholder="Search by invoice no, customer, job..."
+                placeholder="Search invoices..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9"
+                className="pl-9 text-sm"
               />
             </div>
           </div>

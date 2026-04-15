@@ -1,6 +1,7 @@
 "use client"
 
 import useSWR from "swr"
+import { cn } from "@/lib/utils"
 import {
   Card,
   CardContent,
@@ -129,34 +130,34 @@ export function DashboardContent() {
     .slice(0, 5)
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4 sm:gap-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-foreground">
+        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           Dashboard
         </h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-xs sm:text-sm text-muted-foreground">
           Financial overview and activity summary
         </p>
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Card>
-          <CardContent className="flex items-center gap-4 pt-0">
-            <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
-              <FileText className="size-6 text-primary" />
+          <CardContent className="flex items-center gap-3 sm:gap-4 pt-0">
+            <div className="flex size-10 sm:size-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+              <FileText className="size-5 sm:size-6 text-primary" />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="text-xs font-medium text-muted-foreground">
                 Total Invoices
               </p>
-              <p className="text-2xl font-bold text-foreground">
+              <p className="text-xl sm:text-2xl font-bold text-foreground">
                 {invoices.length}
               </p>
               <div className="flex items-center gap-1 text-xs">
-                <span className="text-success font-medium flex items-center gap-0.5">
-                  <ArrowUpRight className="size-3" />
+                <span className="text-success font-medium flex items-center gap-0.5 truncate">
+                  <ArrowUpRight className="size-3 flex-shrink-0" />
                   {openInvoices} open
                 </span>
               </div>
@@ -165,15 +166,15 @@ export function DashboardContent() {
         </Card>
 
         <Card>
-          <CardContent className="flex items-center gap-4 pt-0">
-            <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-accent/10">
-              <FileText className="size-6 text-accent" />
+          <CardContent className="flex items-center gap-3 sm:gap-4 pt-0">
+            <div className="flex size-10 sm:size-12 shrink-0 items-center justify-center rounded-xl bg-accent/10">
+              <FileText className="size-5 sm:size-6 text-accent" />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="text-xs font-medium text-muted-foreground">
                 Invoice Value
               </p>
-              <p className="text-2xl font-bold text-foreground">
+              <p className="text-xl sm:text-2xl font-bold text-foreground truncate">
                 {formatCurrency(totalInvoiceValue)}
               </p>
             </div>
@@ -181,20 +182,20 @@ export function DashboardContent() {
         </Card>
 
         <Card>
-          <CardContent className="flex items-center gap-4 pt-0">
-            <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-success/10">
-              <ScrollText className="size-6 text-success" />
+          <CardContent className="flex items-center gap-3 sm:gap-4 pt-0">
+            <div className="flex size-10 sm:size-12 shrink-0 items-center justify-center rounded-xl bg-success/10">
+              <ScrollText className="size-5 sm:size-6 text-success" />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="text-xs font-medium text-muted-foreground">
                 Total Receipts
               </p>
-              <p className="text-2xl font-bold text-foreground">
+              <p className="text-xl sm:text-2xl font-bold text-foreground">
                 {receipts.length}
               </p>
               <div className="flex items-center gap-1 text-xs">
-                <span className="text-success font-medium flex items-center gap-0.5">
-                  <ArrowUpRight className="size-3" />
+                <span className="text-success font-medium flex items-center gap-0.5 truncate">
+                  <ArrowUpRight className="size-3 flex-shrink-0" />
                   {
                     receipts.filter(
                       (r: { receiptType: string }) =>
@@ -209,28 +210,27 @@ export function DashboardContent() {
         </Card>
 
         <Card>
-          <CardContent className="flex items-center gap-4 pt-0">
-            <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-chart-3/10">
-              <TrendingUp className="size-6 text-chart-3" />
+          <CardContent className="flex items-center gap-3 sm:gap-4 pt-0">
+            <div className="flex size-10 sm:size-12 shrink-0 items-center justify-center rounded-xl bg-chart-3/10">
+              <TrendingUp className="size-5 sm:size-6 text-chart-3" />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="text-xs font-medium text-muted-foreground">
                 Amount Collected
               </p>
-              <p className="text-2xl font-bold text-foreground">
+              <p className="text-xl sm:text-2xl font-bold text-foreground truncate">
                 {formatCurrency(totalReceived)}
               </p>
               <div className="flex items-center gap-1 text-xs">
                 {totalInvoiceValue > 0 ? (
-                  <span className="flex items-center gap-0.5">
+                  <span className="flex items-center gap-0.5 truncate">
                     {totalReceived >= totalInvoiceValue * 0.5 ? (
-                      <ArrowUpRight className="size-3 text-success" />
+                      <ArrowUpRight className="size-3 text-success flex-shrink-0" />
                     ) : (
-                      <ArrowDownRight className="size-3 text-destructive" />
+                      <ArrowDownRight className="size-3 text-destructive flex-shrink-0" />
                     )}
-                    <span className="text-muted-foreground">
-                      {Math.round((totalReceived / totalInvoiceValue) * 100)}%
-                      collected
+                    <span className="text-muted-foreground truncate">
+                      {Math.round((totalReceived / totalInvoiceValue) * 100)}% collected
                     </span>
                   </span>
                 ) : (
@@ -243,17 +243,17 @@ export function DashboardContent() {
       </div>
 
       {/* Charts Row */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
         {/* Collections Bar Chart */}
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle className="text-base">Collections by Month</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-sm sm:text-base">Collections by Month</CardTitle>
+            <CardDescription className="text-xs sm:text-sm">
               Receipt amounts grouped by month
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-64">
+            <div className="h-48 sm:h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={barData}>
                   <CartesianGrid
@@ -295,11 +295,11 @@ export function DashboardContent() {
         {/* Status Pie Chart */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Invoice Status</CardTitle>
-            <CardDescription>Open vs Closed distribution</CardDescription>
+            <CardTitle className="text-sm sm:text-base">Invoice Status</CardTitle>
+            <CardDescription className="text-xs sm:text-sm">Open vs Closed distribution</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-48">
+            <div className="h-40 sm:h-48">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -343,17 +343,17 @@ export function DashboardContent() {
       </div>
 
       {/* Bottom Row */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
         {/* Cumulative Collection Trend */}
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle className="text-base">
+            <CardTitle className="text-sm sm:text-base">
               Cumulative Collection Trend
             </CardTitle>
-            <CardDescription>Running total of received amounts</CardDescription>
+            <CardDescription className="text-xs sm:text-sm">Running total of received amounts</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-56">
+            <div className="h-48 sm:h-56">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={collectionTrend}>
                   <defs>
@@ -418,10 +418,10 @@ export function DashboardContent() {
         {/* Recent Invoices */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Recent Invoices</CardTitle>
-            <CardDescription>Latest invoice activity</CardDescription>
+            <CardTitle className="text-sm sm:text-base">Recent Invoices</CardTitle>
+            <CardDescription className="text-xs sm:text-sm">Latest invoice activity</CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-col gap-3">
+          <CardContent className="flex flex-col gap-2">
             {recentInvoices.map(
               (inv: {
                 _id: string
@@ -433,29 +433,30 @@ export function DashboardContent() {
               }) => (
                 <div
                   key={inv._id}
-                  className="flex items-center justify-between rounded-lg border border-border p-3"
+                  className="flex items-center justify-between rounded-lg border border-border p-2 sm:p-3 gap-2"
                 >
-                  <div className="flex flex-col gap-0.5">
-                    <span className="text-sm font-medium text-foreground font-mono">
+                  <div className="flex flex-col gap-0.5 min-w-0">
+                    <span className="text-xs sm:text-sm font-medium text-foreground font-mono truncate">
                       {inv.invoiceNo}
                     </span>
-                    <span className="text-xs text-muted-foreground truncate max-w-40">
+                    <span className="text-xs text-muted-foreground truncate max-w-24 sm:max-w-40">
                       {inv.customer}
                     </span>
                   </div>
-                  <div className="flex flex-col items-end gap-1">
-                    <span className="text-sm font-semibold text-foreground">
+                  <div className="flex flex-col items-end gap-1 flex-shrink-0">
+                    <span className="text-xs sm:text-sm font-semibold text-foreground">
                       {formatCurrency(inv.invValue)}
                     </span>
                     <Badge
                       variant={
                         inv.status === "Open" ? "secondary" : "default"
                       }
-                      className={
+                      className={cn(
+                        "text-xs",
                         inv.status === "Open"
                           ? "bg-warning/15 text-warning-foreground border-warning/30"
                           : "bg-success/15 text-success border-success/30"
-                      }
+                      )}
                     >
                       {inv.status}
                     </Badge>
@@ -468,21 +469,21 @@ export function DashboardContent() {
       </div>
 
       {/* Invoice Type Distribution */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-6">
         {typeData.map((item) => (
           <Card key={item.name}>
-            <CardContent className="flex items-center gap-4 pt-0">
+            <CardContent className="flex items-center gap-3 sm:gap-4 pt-0">
               <div
-                className="flex size-12 shrink-0 items-center justify-center rounded-xl"
+                className="flex size-10 sm:size-12 shrink-0 items-center justify-center rounded-xl"
                 style={{ backgroundColor: `color-mix(in oklch, ${item.color} 15%, transparent)` }}
               >
-                <FileText className="size-6" style={{ color: item.color }} />
+                <FileText className="size-5 sm:size-6" style={{ color: item.color }} />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-xs font-medium text-muted-foreground">
                   {item.name}
                 </p>
-                <p className="text-2xl font-bold text-foreground">
+                <p className="text-xl sm:text-2xl font-bold text-foreground">
                   {item.value}
                 </p>
                 <p className="text-xs text-muted-foreground">invoices</p>

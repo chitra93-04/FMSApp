@@ -130,44 +130,45 @@ export function BankDetailsManager() {
     }
 
     return (
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-4 sm:gap-6 lg:gap-8">
             {/* Page Header */}
-            <div className="flex items-start justify-between">
-                <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-primary/10">
-                        <Building2 className="size-5 text-primary" />
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
+                <div className="flex items-start gap-2 sm:gap-3">
+                    <div className="p-2 rounded-lg bg-primary/10 flex-shrink-0">
+                        <Building2 className="size-4 sm:size-5 text-primary" />
                     </div>
-                    <div>
-                        <h1 className="text-2xl font-bold tracking-tight text-foreground">Bank Accounts</h1>
-                        <p className="text-sm text-muted-foreground">
+                    <div className="min-w-0">
+                        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">Bank Accounts</h1>
+                        <p className="text-xs sm:text-sm text-muted-foreground">
                             Manage your company bank accounts and transfer details
                         </p>
                     </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2 items-center">
                     {selectedId && (
-                        <Button onClick={handleReset} variant="ghost" size="sm" className="gap-1.5">
+                        <Button onClick={handleReset} variant="ghost" size="sm" className="gap-1.5 text-xs">
                             <X className="size-3.5" />
-                            Cancel Edit
+                            <span className="hidden sm:inline">Cancel Edit</span>
                         </Button>
                     )}
-                    <Button onClick={handleReset} variant="outline" size="sm" className="gap-1.5">
+                    <Button onClick={handleReset} variant="outline" size="sm" className="gap-1.5 text-xs">
                         <Plus className="size-3.5" />
-                        New Account
+                        <span className="hidden sm:inline">New Account</span>
                     </Button>
-                    <Button onClick={handleSave} disabled={saving} size="sm" className="gap-1.5">
+                    <Button onClick={handleSave} disabled={saving} size="sm" className="gap-1.5 text-xs">
                         <Save className="size-3.5" />
-                        {saving ? "Saving..." : selectedId ? "Update Account" : "Save Account"}
+                        <span className="hidden sm:inline">{saving ? "Saving..." : selectedId ? "Update" : "Save"}</span>
+                        <span className="sm:hidden">{saving ? "..." : "Save"}</span>
                     </Button>
                     {selectedId && (
                         <Button
                             onClick={() => setDeleteDialogOpen(true)}
                             variant="destructive"
                             size="sm"
-                            className="gap-1.5"
+                            className="gap-1.5 text-xs"
                         >
                             <Trash2 className="size-3.5" />
-                            Delete
+                            <span className="hidden sm:inline">Delete</span>
                         </Button>
                     )}
                 </div>
@@ -183,22 +184,22 @@ export function BankDetailsManager() {
 
             {/* Main Layout: Form + Table */}
             {/* Main Layout: Form above Table */}
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-4 sm:gap-6">
 
                 {/* ---- Account Form ---- */}
                 <Card>
-                    <CardHeader className="pb-3 flex flex-row items-center justify-between space-y-0">
+                    <CardHeader className="pb-2 sm:pb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                         <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                             {selectedId ? "Edit Bank Account" : "Add New Account"}
                         </CardTitle>
                         {selectedId && (
-                            <Badge variant="outline" className="text-primary border-primary/30">
+                            <Badge variant="outline" className="text-primary border-primary/30 text-xs w-fit">
                                 Editing: {form.bankName}
                             </Badge>
                         )}
                     </CardHeader>
-                    <CardContent className="pt-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <CardContent className="pt-3 sm:pt-4">
+                        <div className="grid grid-cols-1 gap-3 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
                             {/* Bank Identity Group */}
                             <div className="flex flex-col gap-4">
                                 <div className="grid gap-1.5">

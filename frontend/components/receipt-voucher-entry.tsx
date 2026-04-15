@@ -295,66 +295,66 @@ export function ReceiptVoucherEntry() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4 sm:gap-6">
       {/* Header */}
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 sm:gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
             Receipt Voucher Entry
           </h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             Record payments received against invoices
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button onClick={handleNew} variant="outline" className="gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <Button onClick={handleNew} variant="outline" className="gap-2 text-xs sm:text-sm">
             <Plus className="size-4" />
-            New
+            <span className="hidden sm:inline">New</span>
           </Button>
           <Button
             onClick={handleSave}
             disabled={saving || !!selectedId}
-            className="gap-2"
+            className="gap-2 text-xs sm:text-sm"
           >
             <Save className="size-4" />
-            Save
+            <span className="hidden sm:inline">Save</span>
           </Button>
           <Button
             onClick={handleUpdate}
             disabled={saving || !selectedId}
             variant="secondary"
-            className="gap-2"
+            className="gap-2 text-xs sm:text-sm"
           >
             <RefreshCw className="size-4" />
-            Update
+            <span className="hidden sm:inline">Update</span>
           </Button>
           <Button
             onClick={() => setDeleteDialogOpen(true)}
             disabled={!selectedId}
             variant="destructive"
-            className="gap-2"
+            className="gap-2 text-xs sm:text-sm"
           >
             <Trash2 className="size-4" />
-            Delete
+            <span className="hidden sm:inline">Delete</span>
           </Button>
-          <Button onClick={() => handlePrint()} variant="outline" className="gap-2">
+          <Button onClick={() => handlePrint()} variant="outline" className="gap-2 text-xs sm:text-sm">
             <Printer className="size-4" />
-            Print
+            <span className="hidden sm:inline">Print</span>
           </Button>
         </div>
       </div>
 
       {/* Form */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-        <div className="xl:col-span-2 flex flex-col gap-6">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2 flex flex-col gap-4 sm:gap-6">
           {/* Receipt Type & Invoice Reference */}
           <Card>
-            <CardHeader className="pb-4">
-              <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+            <CardHeader className="pb-3 sm:pb-4">
+              <CardTitle className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider">
                 Receipt Type
               </CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-col gap-6">
+            <CardContent className="flex flex-col gap-4 sm:gap-6">
               <RadioGroup
                 value={form.receiptType}
                 onValueChange={(v) => {
@@ -371,23 +371,23 @@ export function ReceiptVoucherEntry() {
                     }))
                   }
                 }}
-                className="flex items-center gap-6"
+                className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6"
               >
                 <div className="flex items-center gap-2">
                   <RadioGroupItem value="Auto" id="auto" />
-                  <Label htmlFor="auto" className="cursor-pointer">
+                  <Label htmlFor="auto" className="cursor-pointer text-sm">
                     Auto (Against Invoice)
                   </Label>
                 </div>
                 <div className="flex items-center gap-2">
                   <RadioGroupItem value="Manual" id="manual" />
-                  <Label htmlFor="manual" className="cursor-pointer">
+                  <Label htmlFor="manual" className="cursor-pointer text-sm">
                     Manual
                   </Label>
                 </div>
               </RadioGroup>
 
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 <div className="flex flex-col gap-1.5">
                   <Label htmlFor="invoiceNo">Invoice No.</Label>
                   {form.receiptType === "Auto" ? (
