@@ -51,10 +51,10 @@ export function AppSidebar() {
 
   // Close mobile menu on navigation
   useEffect(() => {
-    if (isMobile) {
+    if (isMobile && mobileMenuOpen) {
       setMobileMenuOpen(false)
     }
-  }, [pathname, isMobile])
+  }, [pathname, isMobile, mobileMenuOpen])
 
   if (isMobile && !mobileMenuOpen) {
     return (
@@ -62,7 +62,7 @@ export function AppSidebar() {
         variant="ghost"
         size="icon"
         onClick={() => setMobileMenuOpen(true)}
-        className="fixed top-3 left-3 z-40 text-muted-foreground hover:text-foreground md:hidden"
+        className="fixed top-14 left-3 z-40 text-muted-foreground hover:text-foreground md:hidden"
       >
         <Menu className="size-5" />
         <span className="sr-only">Open menu</span>
@@ -115,6 +115,11 @@ export function AppSidebar() {
             const linkContent = (
               <Link
                 href={item.href}
+                onClick={() => {
+                  if (isMobile && mobileMenuOpen) {
+                    setMobileMenuOpen(false)
+                  }
+                }}
                 className={cn(
                   "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                   isActive
