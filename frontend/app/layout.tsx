@@ -36,16 +36,20 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
+import { ThemeProvider } from "@/components/theme-provider"
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        {children}
-        <Toaster richColors position="bottom-right" />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+          <Toaster richColors position="bottom-right" />
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

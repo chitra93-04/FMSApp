@@ -131,13 +131,15 @@ export function DashboardContent() {
   return (
     <div className="flex flex-col gap-6">
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-foreground">
-          Dashboard
-        </h1>
-        <p className="text-sm text-muted-foreground">
-          Financial overview and activity summary
-        </p>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-card/40 backdrop-blur-md p-6 rounded-xl border border-border/50 shadow-lg shadow-black/20">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-black tracking-widest uppercase text-foreground drop-shadow-sm">
+            Dashboard
+          </h1>
+          <p className="text-sm font-medium tracking-wide text-muted-foreground mt-1 uppercase">
+            Financial overview and activity summary
+          </p>
+        </div>
       </div>
 
       {/* KPI Cards */}
